@@ -13,8 +13,14 @@ connectDB()
 
 const app = express();
 
+const corsOptions = {
+  origin: 'https://blood-bank-five-pied.vercel.app', // Replace with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use("/api/v1/test", require("./routes/testRouts"));
 app.use("/api/v1/auth", require("./routes/authRoutes"));
